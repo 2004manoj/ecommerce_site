@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>StyleAura - Exlpore the Trend</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        /* Custom Styles */
+        .navbar {
+            background: linear-gradient(45deg, #6bd5ff, #4d94ff); /* Stylish Gradient */
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+        }
+        .navbar-brand {
+            font-size: 24px;
+            font-weight: bold;
+            color: white !important;
+        }
+        .navbar-nav .nav-link {
+            color: white !important;
+            font-size: 18px;
+            position: relative;
+            padding-bottom: 5px;
+            transition: color 0.3s ease-in-out;
+        }
+        /* Underline Effect */
+        .navbar-nav .nav-link::after {
+            content: "";
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 100%;
+            height: 3px;
+            background-color: white;
+            transform: scaleX(0);
+            transition: transform 0.3s ease-in-out;
+        }
+        /* Hover Effect */
+        .navbar-nav .nav-link:hover {
+            color: #ffeeba !important; /* Light Golden */
+        }
+        .navbar-nav .nav-link:hover::after {
+            transform: scaleX(1);
+        }
+        /* Preloader Styles */
+        #preloader {
+            position: fixed;
+            width: 100%;
+            height: 100vh;
+            background: linear-gradient(45deg, #6bb0ff, #4d85ff);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            transition: opacity 3s ease-in-out;
+        }
+        .loader {
+            text-align: center;
+            color: white;
+            font-size: 24px;
+            font-weight: bold;
+            position: relative;
+        }
+        .loader::after {
+            content: "";
+            display: block;
+            width: 50px;
+            height: 50px;
+            border: 5px solid white;
+            border-top: 5px solid transparent;
+            border-radius: 50%;
+            animation: spin 3s linear infinite;
+            margin: 10px auto;
+        }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        /* Hide Content Until Loaded */
+        #main-content {
+            display: none;
+        }
+
+        /* Navbar */
+        .navbar {
+            background: linear-gradient(45deg, #6bd5ff, #4d94ff); /* Stylish Gradient */
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+        }
+        .navbar-brand, .nav-link {
+            color: white !important;
+        }
+
+        /* Explore Section */
+        .explore-section {
+            padding: 60px 0;
+            text-align: center;
+        }
+        .explore-section h2 {
+            font-size: 36px;
+            margin-bottom: 20px;
+        }
+        .explore-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            justify-content: center;
+        }
+        .explore-item {
+            width: 300px;
+            border-radius: 8px;
+            overflow: hidden;
+            transition: transform 0.3s ease-in-out;
+            cursor: pointer;
+        }
+        .explore-item:hover {
+            transform: scale(1.05);
+        }
+        .explore-item img {
+            width: 100%;
+            height: auto;
+            border-radius: 8px;
+        }
+        .footer {
+            background: #333;
+            color: white;
+            padding: 30px 0;
+        }
+        .footer a {
+            color: #ffb84d;
+            text-decoration: none;
+        }
+        .footer a:hover {
+            color: #ff6b6b;
+        }
+
+        /* Back to Top Button */
+        #backToTop {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: #ff6b6b;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 50%;
+            cursor: pointer;
+            display: none;
+            transition: background 0.3s ease-in-out;
+        }
+        #backToTop:hover {
+            background: #ffb84d;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Preloader -->
+    <div id="preloader">
+        <div class="loader"> StyleAura...</div>
+    </div>
+
+    <!-- Main Content -->
+    <div id="main-content">
+
+        <!-- Navbar -->
+        <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
+            <div class="container">
+                <a class="navbar-brand" href="#">StyleAura</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav ms-auto">
+                        <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+                        <li class="nav-item"><a class="nav-link" href="explore.html">Fashion</a></li>
+                        <li class="nav-item"><a class="nav-link" href="order.html">Order Now</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#">Contact Us</a></li>
+                       
+                    </ul>
+                </div>
+            </div>
+        </nav>
+
+        <!-- Explore Section -->
+        <div class="container explore-section" style="margin-top: 80px;">
+            <h2>Explore the Latest Fashion Trends</h2>
+            <p>Discover unique styles and outfits curated just for you.</p>
+            <div class="explore-grid">
+                <div class="card" style="width: 18rem;">
+                    <img src="https://i.pinimg.com/736x/a3/3f/d8/a33fd856d5b4c9e81ae8d7c7152e6446.jpg" class="card-img-top" alt="...">
+                    <div class="card-body">
+                      <h5 class="card-title">Formal Shirt Men's</h5>
+                      <p class="card-text">Elevate your professional look with our premium formal shirts, designed for comfort and elegance.</p>
+                      <a href="order.html" class="btn btn-primary">Buy Now</a>
+                    </div>
+                  </div>
+                  <div class="card" style="width: 18rem;">
+                    <img src="https://i.pinimg.com/736x/8a/09/5a/8a095af4b9b43f14d25610307acc2183.jpg" class="card-img-top" alt="...">
+                    <div class="card-body">
+                      <h5 class="card-title">Hoodie Men & Women</h5>
+                      <p class="card-text">Stay warm and stylish with our trendy hoodies – perfect for casual outings and cozy evenings!</p>
+                      <a href="order.html" class="btn btn-primary">Buy Now</a>
+                    </div>
+                  </div>
+                  <div class="card" style="width: 18rem;">
+                    <img src="https://i.pinimg.com/736x/49/71/5c/49715cf491a9d63adad239f9bd442709.jpg" class="card-img-top" alt="...">
+                    <div class="card-body">
+                      <h5 class="card-title">Shoe's</h5>
+                      <p class="card-text">Step into style and comfort with our latest collection of shoes, crafted for every occasion.</p>
+                      <a href="order.html" class="btn btn-primary">Buy Now</a>
+                    </div>
+                  </div>
+                  <div class="card" style="width: 18rem;">
+                    <img src="https://i.pinimg.com/736x/76/63/fd/7663fd2efeb219ecfb510616d39f4a21.jpg" class="card-img-top" alt="...">
+                    <div class="card-body">
+                      <h5 class="card-title">Jeans Pant</h5>
+                      <p class="card-text">Discover the perfect fit with our stylish and durable jeans – a must-have for your everyday fashion!</p>
+                      <a href="order.html" class="btn btn-primary">Buy Now</a>
+                    </div>
+                  </div>
+                  <div class="card" style="width: 18rem;">
+                    <img src="https://i.pinimg.com/736x/af/d1/2d/afd12d7c8023189cec73d54fb0daac0f.jpg" class="card-img-top" alt="...">
+                    <div class="card-body">
+                      <h5 class="card-title">Sarees</h5>
+                      <p class="card-text">Grace meets tradition in our exquisite saree collection, designed for elegance and charm.</p>
+                      <a href="order.html" class="btn btn-primary">Buy Now</a>
+                    </div>
+                  </div>
+                  <div class="card" style="width: 18rem;">
+                    <img src="https://i.pinimg.com/736x/99/d7/d4/99d7d4ddc3acf2ad4294e698b630df85.jpg" class="card-img-top" alt="...">
+                    <div class="card-body">
+                      <h5 class="card-title">Chudidhar's</h5>
+                      <p class="card-text">Feel confident and beautiful in our trendy chudidars, blending tradition with modern style!</p>
+                      <a href="order.html" class="btn btn-primary">Buy Now</a>
+                    </div>
+                  </div>
+                  <div class="card" style="width: 18rem;">
+                    <img src="https://i.pinimg.com/736x/55/77/ea/5577ea3855471e79bcd0b0970591d2ed.jpg" class="card-img-top" alt="...">
+                    <div class="card-body">
+                      <h5 class="card-title">Kids Wear</h5>
+                      <p class="card-text">Dress your little ones in adorable and comfortable outfits – stylish fashion for every child!</p>
+                      <a href="order.html" class="btn btn-primary">Buy Now</a>
+                    </div>
+                  </div>
+                  <div class="card" style="width: 18rem;">
+                    <img src="https://i.pinimg.com/736x/4b/f5/0f/4bf50fc9eca8762f872f362e98610b24.jpg" class="card-img-top" alt="...">
+                    <div class="card-body">
+                      <h5 class="card-title">Cosmetics</h5>
+                      <p class="card-text">Enhance your beauty with our premium cosmetics – because you deserve to shine!.</p>
+                      <a href="order.html" class="btn btn-primary">Buy Now</a>
+                    </div>
+                  </div>
+            </div>
+        </div>
+
+    </div>
+
+ <!-- Footer -->
+ <footer class="footer">
+    <div class="container">
+        <div class="row">
+            <!-- About Us -->
+            <div class="col-md-4">
+                <h5>About Us</h5>
+                <p>StyleAura brings you the latest fashion trends for all ages. Upgrade your wardrobe with our exclusive collections.</p>
+            </div>
+            <!-- Quick Links -->
+            <div class="col-md-4">
+                <h5>Quick Links</h5>
+                <ul class="list-unstyled">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="explore.html">Fashion</a></li>
+                    <li><a href="order.html">Order Now</a></li>
+                    <li><a href="#">Contact Us</a></li>
+                </ul>
+            </div>
+            <!-- Follow Us -->
+            <div class="col-md-4">
+                <h5>Follow Us</h5>
+                <a href="#">Facebook</a> | <a href="#">Instagram</a> | <a href="#">Twitter</a>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- Back to Top Button -->
+<button id="backToTop" onclick="scrollToTop()">↑</button>
+
+
+
+
+    
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script>
+        // Hide preloader and show content after page loads
+        window.addEventListener("load", function() {
+            const preloader = document.getElementById("preloader");
+            preloader.style.opacity = "0";
+            setTimeout(() => {
+                preloader.style.display = "none";
+                document.getElementById("main-content").style.display = "block";
+            }, 500);
+        });
+    </script>
+
+</body>
+</html>

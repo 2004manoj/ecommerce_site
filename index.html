@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>StyleAura - Exlpore the Trend</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        /* Custom Styles */
+        .navbar {
+            background: linear-gradient(45deg, #6bd5ff, #4d94ff); /* Stylish Gradient */
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+        }
+        .navbar-brand {
+            font-size: 24px;
+            font-weight: bold;
+            color: white !important;
+        }
+        .navbar-nav .nav-link {
+            color: white !important;
+            font-size: 18px;
+            position: relative;
+            padding-bottom: 5px;
+            transition: color 0.3s ease-in-out;
+        }
+        /* Underline Effect */
+        .navbar-nav .nav-link::after {
+            content: "";
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 100%;
+            height: 3px;
+            background-color: white;
+            transform: scaleX(0);
+            transition: transform 0.3s ease-in-out;
+        }
+        /* Hover Effect */
+        .navbar-nav .nav-link:hover {
+            color: #ffeeba !important; /* Light Golden */
+        }
+        .navbar-nav .nav-link:hover::after {
+            transform: scaleX(1);
+        }
+        /* Preloader Styles */
+        #preloader {
+            position: fixed;
+            width: 100%;
+            height: 100vh;
+            background: linear-gradient(45deg, #6bb0ff, #4d85ff);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            transition: opacity 3s ease-in-out;
+        }
+        .loader {
+            text-align: center;
+            color: white;
+            font-size: 24px;
+            font-weight: bold;
+            position: relative;
+        }
+        .loader::after {
+            content: "";
+            display: block;
+            width: 50px;
+            height: 50px;
+            border: 5px solid white;
+            border-top: 5px solid transparent;
+            border-radius: 50%;
+            animation: spin 3s linear infinite;
+            margin: 10px auto;
+        }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        /* Hide Content Until Loaded */
+        #main-content {
+            display: none;
+        }
+        /* Centered Content Styles */
+        .hero-section {
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            background: url('https://images.pexels.com/photos/5176912/pexels-photo-5176912.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940') no-repeat center center/cover;
+            color: white;
+            position: relative;
+        }
+        .hero-overlay {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            top: 0;
+            left: 0;
+        }
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            max-width: 600px;
+        }
+        .hero-content h1 {
+            font-size: 50px;
+            font-weight: bold;
+            animation: fadeIn 1.5s ease-in-out;
+        }
+        .hero-content p {
+            font-size: 18px;
+            margin: 20px 0;
+            animation: fadeIn 2s ease-in-out;
+        }
+        .btn-shop {
+            background: #ffb84d;
+            color: #333;
+            font-size: 20px;
+            padding: 12px 30px;
+            border-radius: 5px;
+            text-decoration: none;
+            transition: all 0.3s ease-in-out;
+        }
+        .btn-shop:hover {
+            background: #ff6b6b;
+            color: white;
+        }
+        @keyframes fadeIn {
+            0% { opacity: 0; transform: translateY(-20px); }
+            100% { opacity: 1; transform: translateY(0); }
+        }
+        /* Contact Us Section */
+        .contact-section {
+            padding: 50px 0;
+            text-align: center;
+        }
+        .contact-form {
+            max-width: 600px;
+            margin: auto;
+            background: #f9f9f9;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .contact-form input, 
+        .contact-form textarea {
+            width: 100%;
+            margin-bottom: 15px;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+        .contact-form button {
+            background: #ff6b6b;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background 0.3s ease-in-out;
+        }
+        .contact-form button:hover {
+            background: #ffb84d;
+        }
+
+        /* Footer Styling */
+        .footer {
+            background: #333;
+            color: white;
+            padding: 30px 0;
+        }
+        .footer a {
+            color: #ffb84d;
+            text-decoration: none;
+        }
+        .footer a:hover {
+            color: #ff6b6b;
+        }
+
+        /* Back to Top Button */
+        #backToTop {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: #ff6b6b;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 50%;
+            cursor: pointer;
+            display: none;
+            transition: background 0.3s ease-in-out;
+        }
+        #backToTop:hover {
+            background: #ffb84d;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Preloader -->
+    <div id="preloader">
+        <div class="loader">StyleAura...</div>
+    </div>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="#">StyleAura</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="explore.html">Fashion</a></li>
+                    <li class="nav-item"><a class="nav-link" href="order.html">Order Now</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#">Contact Us</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Centered Hero Section -->
+    <div class="hero-section">
+        <div class="hero-overlay"></div>
+        <div class="hero-content">
+            <h1>Elevate Your Style with StyleAura</h1>
+            <p>Discover the latest fashion trends for men, women, and kids. Shop now and upgrade your wardrobe with stylish clothing and accessories.</p>
+            <a href="explore.html" class="btn-shop">Explore Now</a>
+        </div>
+    </div>
+    <!-- Contact Us Section -->
+    <div class="container contact-section" style="margin-top: 80px;">
+        <h2>Contact Us</h2>
+        <p>Have any questions? Fill out the form below and we’ll get back to you!</p>
+        <div class="contact-form">
+            <form>
+                <input type="text" placeholder="Your Name" required>
+                <input type="email" placeholder="Your Email" required>
+                <textarea rows="4" placeholder="Your Message" required></textarea>
+                <button type="submit">Send Message</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="row">
+                <!-- About Us -->
+                <div class="col-md-4">
+                    <h5>About Us</h5>
+                    <p>StyleAura brings you the latest fashion trends for all ages. Upgrade your wardrobe with our exclusive collections.</p>
+                </div>
+                <!-- Quick Links -->
+                <div class="col-md-4">
+                    <h5>Quick Links</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="#">Home</a></li>
+                        <li><a href="explore.html">Fashion</a></li>
+                        <li><a href="order.html">Order Now</a></li>
+                        <li><a href="#">Contact Us</a></li>
+                    </ul>
+                </div>
+                <!-- Follow Us -->
+                <div class="col-md-4">
+                    <h5>Follow Us</h5>
+                    <a href="#">Facebook</a> | <a href="#">Instagram</a> | <a href="#">Twitter</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Back to Top Button -->
+    <button id="backToTop" onclick="scrollToTop()">↑</button>
+
+
+    <script>
+        // Hide preloader and show content after page loads
+        window.addEventListener("load", function() {
+            const preloader = document.getElementById("preloader");
+            preloader.style.opacity = "0";
+            setTimeout(() => {
+                preloader.style.display = "none";
+                document.getElementById("main-content").style.display = "block";
+            }, 500);
+        });
+    </script>
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+</body>
+</html>

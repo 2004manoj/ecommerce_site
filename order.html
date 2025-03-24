@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>StyleAura - Order Now</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        /* Navbar Styling */
+        .navbar {
+            background: linear-gradient(45deg, #6bd5ff, #4d94ff);
+            /* Stylish Gradient */
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        .navbar-brand {
+            font-size: 24px;
+            font-weight: bold;
+            color: white !important;
+        }
+
+        .navbar-nav .nav-link {
+            color: white !important;
+            font-size: 18px;
+            position: relative;
+            padding-bottom: 5px;
+            transition: color 0.3s ease-in-out;
+        }
+
+        /* Underline Effect */
+        .navbar-nav .nav-link::after {
+            content: "";
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 100%;
+            height: 3px;
+            background-color: white;
+            transform: scaleX(0);
+            transition: transform 0.3s ease-in-out;
+        }
+
+        /* Hover Effect */
+        .navbar-nav .nav-link:hover {
+            color: #ffeeba !important;
+            /* Light Golden */
+        }
+
+        .navbar-nav .nav-link:hover::after {
+            transform: scaleX(1);
+        }
+
+        /* Order Form Section */
+        .order-section {
+            padding: 50px 0;
+            text-align: center;
+        }
+
+        .order-form {
+            max-width: 600px;
+            margin: auto;
+            background: #f9f9f9;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .order-form input,
+        .order-form select,
+        .order-form textarea {
+            width: 100%;
+            margin-bottom: 15px;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+
+        .order-form button {
+            background: #ff6b6b;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background 0.3s ease-in-out;
+        }
+
+        .order-form button:hover {
+            background: #ffb84d;
+        }
+
+        /* Footer Styling */
+        .footer {
+            background: #333;
+            color: white;
+            padding: 30px 0;
+        }
+
+        .footer a {
+            color: #ffb84d;
+            text-decoration: none;
+        }
+
+        .footer a:hover {
+            color: #ff6b6b;
+        }
+
+        /* Back to Top Button */
+        #backToTop {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: #ff6b6b;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 50%;
+            cursor: pointer;
+            display: none;
+            transition: background 0.3s ease-in-out;
+        }
+
+        #backToTop:hover {
+            background: #ffb84d;
+        }
+
+        body {
+            background-image: url('https://images.pexels.com/photos/5176912/pexels-photo-5176912.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940');
+            /* Image URL */
+            background-size: cover;
+            /* Covers entire page */
+            background-position: center;
+            /* Centers the image */
+            background-repeat: no-repeat;
+            /* Prevents repetition */
+            height: 115vh;
+            /* Full height */
+            position: relative;
+            /* Needed for overlay */
+        }
+
+        body::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            /* Black overlay with 50% opacity */
+            z-index: -1;
+            /* Keeps it behind the content */
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Preloader -->
+    <div id="preloader">
+        <div class="loader"> StyleAura...</div>
+    </div>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="#">StyleAura</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="explore.html">Fashion</a></li>
+                    <li class="nav-item"><a class="nav-link active" href="order.html">Order Now</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#">Contact Us</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Order Now Section -->
+    <div class="container order-section" style="margin-top: 80px;">
+        <h2 style="color: white;">🛍 Place Your Order</h2>
+        <p style="color: white;">Select your favorite fashion items and order now!</p>
+        <div class="order-form">
+            <form>
+                <input type="text" placeholder="Your Name" required>
+                <input type="email" placeholder="Your Email" required>
+                <input type="tel" placeholder="Your Phone Number" required>
+
+                <select required>
+                    <option value="" disabled selected>Select a Product Category</option>
+                    <option>Formal Shirt</option>
+                    <option>Hoodie</option>
+                    <option>Shoes</option>
+                    <option>Jeans</option>
+                    <option>Sarees</option>
+                    <option>Chudidars</option>
+                    <option>Kids Wear</option>
+                    <option>Cosmetics</option>
+                </select>
+
+                <select required>
+                    <option value="" disabled selected>Select Size</option>
+                    <option>XS</option>
+                    <option>S</option>
+                    <option>M</option>
+                    <option>L</option>
+                    <option>XL</option>
+                    <option>XXL</option>
+                </select>
+
+                <textarea rows="4" placeholder="Delivery Address" required></textarea>
+
+                <button type="submit">Place Order</button>
+                <button type="reset" style="background: #555;">Reset</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="row">
+                <!-- About Us -->
+                <div class="col-md-4">
+                    <h5>About Us</h5>
+                    <p>StyleAura brings you the latest fashion trends for all ages. Upgrade your wardrobe with our
+                        exclusive collections.</p>
+                </div>
+                <!-- Quick Links -->
+                <div class="col-md-4">
+                    <h5>Quick Links</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="explore.html">Fashion</a></li>
+                        <li><a href="order.html">Order Now</a></li>
+                        <li><a href="#">Contact Us</a></li>
+                    </ul>
+                </div>
+                <!-- Follow Us -->
+                <div class="col-md-4">
+                    <h5>Follow Us</h5>
+                    <a href="#">Facebook</a> | <a href="#">Instagram</a> | <a href="#">Twitter</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script>
+        // Show back-to-top button when scrolling down
+        window.onscroll = function () {
+            let backToTopBtn = document.getElementById("backToTop");
+            if (document.body.scrollTop > 300 || document.documentElement.scrollTop > 300) {
+                backToTopBtn.style.display = "block";
+            } else {
+                backToTopBtn.style.display = "none";
+            }
+        };
+
+        // Smooth scroll to top
+        function scrollToTop() {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+    </script>
+
+</body>
+
+</html>
